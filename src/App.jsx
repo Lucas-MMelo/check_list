@@ -68,18 +68,24 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <div className="conteiner">
-      <h1>Task Lists</h1>
-      <p className="obs">Project by Lucas de Moura Melo.</p>
-      <AddTask setTask={setTask} />
-      {/* Componente responsável por adcionar uma nova tarefa ao useTask. */}
-      <PrtTask
-        useTask={useTask}
-        setTask={setTask}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-      />
-      {/* Componente responsável por imprimir as tarefas na tela. */}
+    <div>
+      <main className="conteiner">
+        <header>
+          <h1>Task Lists</h1>
+          <p className="obs">Project by Lucas de Moura Melo.</p>
+          <AddTask setTask={setTask} />
+          {/* Componente responsável por adcionar uma nova tarefa ao useTask. */}
+        </header>
+        <section>
+          <PrtTask
+            useTask={useTask}
+            setTask={setTask}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+          />
+          {/* Componente responsável por imprimir as tarefas na tela. */}
+        </section>
+      </main>
     </div>
   );
 }

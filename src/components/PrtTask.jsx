@@ -117,10 +117,10 @@ const PrtTask = ({ useTask, setTask, searchTerm, setSearchTerm }) => {
   //--------------------------------------------------------//
 
   return (
-    <>
+    <section>
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
-      <div>
+      <div className="checkScream">
         {filteredTasks.map((itemTask) => {
           // Cria o itemTask que responde a cada task dentro da lista.
 
@@ -144,40 +144,41 @@ const PrtTask = ({ useTask, setTask, searchTerm, setSearchTerm }) => {
             <div
               className={itemTask.state ? "taskTag complete" : "taskTag"}
               key={itemTask.id}
-              // Checa se esta task está completa ou não, se sim adciona a classe .complete.
             >
+              {/* Checa se esta task está completa ou não, se sim adciona a
+              classe .complete. */}
+              <div className={classPriority}></div>
+              {/* Cria a barra de prioridade na lateral de toda tarefa */}
               <div>
-                <div className={`${classPriority} + header`}>
+                <section className="header">
                   <div>
                     <h3>{itemTask.title}</h3>
                   </div>
 
                   <div className="flex infos">
-                    <div className="info flex">
-                      <img className="icon" src="/atention.svg" alt="" />
+                    <div className={`${classPriority} info`}>
+                      <i class="fa-solid fa-bullseye"></i>
                       <p>{itemTask.priority}</p>
                     </div>
-                    <div className="info flex">
-                      <img className="icon" src="/shedule.svg" alt="" />
+                    <div className="info">
+                      <i class="fa-regular fa-calendar"></i>
                       <p>{itemTask.data ? itemTask.data : "No deadline"}</p>
                     </div>
                   </div>
-                </div>
+                </section>
 
-                <div className="mainTask">
+                <section className="mainTask">
                   {/* Insere o Título da tarefa. */}
-                  <span>Description:</span>
-                  <p className={`${classPriority} description`}>
-                    {itemTask.description}
-                  </p>
+                  <span className="spnTitle">Description:</span>
+                  <p className="description">{itemTask.description}</p>
                   {/* Insere a descrição da tarefa. */}
-                </div>
+                </section>
 
-                <div className={`${classPriority} footTask`}>
+                <section className=" footTask">
                   {/* Abaixo, se houver passos nesta tarefa, ele redenriza: */}
                   {itemTask.steps && itemTask.steps.length > 0 && (
                     <>
-                      <span>Steps</span>
+                      <span className="spnTitle">Steps:</span>
                       <ul>
                         {itemTask.steps.map((targetStep) => (
                           // Cria o itemTask que responde a cada task dentro da lista.
@@ -202,9 +203,12 @@ const PrtTask = ({ useTask, setTask, searchTerm, setSearchTerm }) => {
                           >
                             {/* Visualização ou edição condicional */}
                             {targetStep.edite ? (
-                              <>
+                              <section>
                                 <div className="modal">
-                                  <div className="modal-content stepMenu">
+                                  <div
+                                    className="modal-content stepMenu"
+                                    onClick={(e) => e.stopPropagation()}
+                                  >
                                     <input
                                       type="text"
                                       value={
@@ -262,7 +266,7 @@ const PrtTask = ({ useTask, setTask, searchTerm, setSearchTerm }) => {
                                     {/* Salva as edições feitas no input. */}
                                   </div>
                                 </div>
-                              </>
+                              </section>
                             ) : (
                               <>
                                 {/* Botão de deletar */}
@@ -288,7 +292,7 @@ const PrtTask = ({ useTask, setTask, searchTerm, setSearchTerm }) => {
                     </>
                   )}
 
-                  <div className="boxBtn">
+                  <section className="boxBtn">
                     <button
                       onClick={() => {
                         const updatedTasks = useTask.map(
@@ -315,14 +319,14 @@ const PrtTask = ({ useTask, setTask, searchTerm, setSearchTerm }) => {
                       Trash
                     </button>
                     {/* Deleta a tarefa alvo. */}
-                  </div>
-                </div>
+                  </section>
+                </section>
               </div>
             </div>
           );
         })}
       </div>
-    </>
+    </section>
   );
 };
 

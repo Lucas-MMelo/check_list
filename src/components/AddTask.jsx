@@ -6,7 +6,7 @@ const AddTask = ({ setTask }) => {
   // Controla se o formulário está visível (true) ou escondido (false)
 
   return (
-    <div>
+    <div className="flex">
       <button className="newTask" onClick={() => setModal(!useModal)}>
         Add new task
       </button>
